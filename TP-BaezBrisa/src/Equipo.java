@@ -38,13 +38,13 @@ public class Equipo {
 			boolean flag = true;
 			do {
 				String[] nombre = {"Manuel", "Lucas", "Daniel", "Hugo", "Alejandro","Mateo", "Martin","Camilo"};
-				int edad = (int)(Math.random()*40+1);
+				int edad = (int)(Math.random()*20+18);
 				int camiseta = (int)(Math.random()*99+1);
 				String[] posicion = {"Arquero","Delantero","Mediocampista","Defensor"};
 
 
 				for (Jugador jugador: this.getJugadores()) {
-					if (edad<=18) {
+					if (edad>=0 && edad<=18) {
 						flag=false;
 					} else {
 						if (jugador.getnCamiseta()==camiseta) {
@@ -67,8 +67,8 @@ public class Equipo {
 	public boolean agregarJugador(String nombre, int edad, int nCamiseta, String posicion) {
 		for (Jugador jugador : jugadores) {
 
-			if (jugador.getNombre().isEmpty()) {
-				JOptionPane.showMessageDialog(null, "Nombre vacio");
+			if (nombre==null && nombre.trim().isEmpty()  ) {
+				JOptionPane.showMessageDialog(null, "El nombre no puede estar vacio");
 				return false;
 			} else {
 				if (edad>=0 && edad<=18) {
@@ -82,7 +82,6 @@ public class Equipo {
 					}
 				}
 			}
-
 		}
 
 		//Validar datos
@@ -90,8 +89,7 @@ public class Equipo {
 		return true;
 
 	}
-
-
+	
 	public boolean eliminarJugador(int nCamiseta) {
 		for (Jugador jugador : jugadores) {
 			if(jugador.getnCamiseta()==nCamiseta) {;
