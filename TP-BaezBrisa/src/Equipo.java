@@ -92,9 +92,9 @@ public class Equipo {
 	}
 
 
-	public boolean eliminarJugador(String nombre) {
+	public boolean eliminarJugador(int nCamiseta) {
 		for (Jugador jugador : jugadores) {
-			if(jugador.getNombre()==nombre) {;
+			if(jugador.getnCamiseta()==nCamiseta) {;
 			this.getJugadores().remove(this.getJugadores().indexOf(jugador));
 			return true;
 			}

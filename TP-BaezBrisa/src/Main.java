@@ -78,7 +78,7 @@ public class Main {
 						} else {	
 							String[] jugadores= new String[nuevo.getEquipos().get(seleccionado).getJugadores().size()]; 
 							for (int i = 0; i < nuevo.getEquipos().get(seleccionado).getJugadores().size(); i++) {
-								jugadores[i] =  nuevo.getEquipos().get(seleccionado).getJugadores().get(i).getNombre();
+								jugadores[i] =  Integer.toString(nuevo.getEquipos().get(seleccionado).getJugadores().get(i).getnCamiseta());
 							}
 							String seleccion = (String)JOptionPane.showInputDialog(null, "Jugadores",
 									null, 0, null, jugadores, jugadores[0]);
@@ -91,7 +91,7 @@ public class Main {
 								switch (opcionJugador) {
 								case 0:
 									//Eliminar jugador
-									if(nuevo.getEquipos().get(seleccionado).eliminarJugador(seleccion) ) {
+									if(nuevo.getEquipos().get(seleccionado).eliminarJugador(Integer.parseInt(seleccion))) {
 										JOptionPane.showMessageDialog(null, "Se pudo eliminar");
 
 									}else {
