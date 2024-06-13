@@ -1,9 +1,11 @@
+import java.util.Iterator;
 import java.util.LinkedList;
 
 import javax.swing.JOptionPane;
 
 public class GestorEquipos {
 	private LinkedList<Equipo> equipos = new  LinkedList<Equipo> ();
+	private LinkedList<Partido> partidos = new  LinkedList<Partido> ();
 
 	public GestorEquipos() {
 
@@ -16,6 +18,16 @@ public class GestorEquipos {
 	public void setEquipos(LinkedList<Equipo> equipos) {
 		this.equipos = equipos;
 	}
+	
+	
+	public LinkedList<Partido> getPartidos() {
+		return partidos;
+	}
+
+	public void setPartidos(LinkedList<Partido> partidos) {
+		this.partidos = partidos;
+	}
+
 	public boolean agregarEquipo(String nombre,String ciudad) {
 		for (Equipo equipo: equipos) {
 			if (equipo.getNombre()==nombre) {
@@ -28,6 +40,7 @@ public class GestorEquipos {
 
 			
 		}
+		JOptionPane.showMessageDialog(null, "Se pudo agregar");
 		this.getEquipos().add(new Equipo(nombre,ciudad));
 		return true;
 	}
@@ -46,7 +59,7 @@ public class GestorEquipos {
 
 		  }
 	
-	public Equipo JugarPartido(Equipo equipo1, Equipo equipo2) {
+	public Partido JugarPartido(Equipo equipo1, Equipo equipo2) {
 		if (equipo1==equipo2) {
 			JOptionPane.showMessageDialog(null, "No se puede jugar entre el mismo equipo");
 			return null;
@@ -68,16 +81,19 @@ public class GestorEquipos {
 					}
 				} while (goles1==goles2);
 
-				if (goles1>goles2) {
+				
 
-					return equipo1;
-				} else {
-
-					return equipo2;
-				}
+					return new Partido(equipo1, equipo2, goles1, goles2);
+			
 			}
 		}
 
+	}
+	
+	public void RellenarTodosLosEquipos() {
+		for (Equipo equipo : equipos) {
+			equipo.agregarJugadoresFalso(11);
+		}
 	}
 
 }

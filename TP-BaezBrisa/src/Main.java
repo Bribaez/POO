@@ -10,9 +10,15 @@ public class Main {
 		GestorEquipos nuevo = new GestorEquipos();
 		nuevo.getEquipos().add(new Equipo("Boca","La boca"));
 		nuevo.getEquipos().add(new Equipo("River","Nuñez"));
+		nuevo.getEquipos().add(new Equipo("Velez","Liniers"));
+		nuevo.getEquipos().add(new Equipo("Chacarita","Chacarita"));
+		nuevo.getEquipos().add(new Equipo("Chicago","Nataderos"));
+		nuevo.getEquipos().add(new Equipo("San Lorenzo","Boedo"));
+		nuevo.getEquipos().add(new Equipo("Platense","La plata"));
+		nuevo.RellenarTodosLosEquipos();
 		String[] Opciones = {
 
-				"Jugar partido","Revisar Equipo","Ver la lista de equipos",
+				"Partido","Revisar Equipo","Ver la lista de equipos",
 				"Agregar equipo","Buscar equipo","Salir"
 
 		};
@@ -22,17 +28,24 @@ public class Main {
 
 			switch (opcion) {
 			case 0:
+				
+				String[] OpcionesPartidos = {
 
-				//Jugar partido
+						"Partido","Revisar Equipo","Ver la lista de equipos",
+						"Agregar equipo","Buscar equipo","Salir"
+
+				};
+				int opcionpartido =0;
+				//Partido
 				JOptionPane.showMessageDialog(null, "El ganador es:"+
-						nuevo.JugarPartido(nuevo.getEquipos().get(seleccionarEquipo(nuevo.getEquipos()))
-								,nuevo.getEquipos().get(seleccionarEquipo(nuevo.getEquipos()))));
+						nuevo.JugarPartido(seleccionarEquipo(nuevo.getEquipos())
+								,seleccionarEquipo(nuevo.getEquipos())));
 
 				break;
 			case 1: 
 
 				//Revisar equipo
-				int seleccionado = seleccionarEquipo(nuevo.getEquipos());
+				Equipo seleccionado = seleccionarEquipo(nuevo.getEquipos());
 				String[] opcionesDeJugadores = {
 						"Agregar jugador","Rellenar jugadores",
 						"Ver la lista de jugadores","Buscar jugador","Volver al menu principal",
@@ -40,7 +53,7 @@ public class Main {
 				};
 				int opcionJugadores=0;
 				do {
-					opcionJugadores = JOptionPane.showOptionDialog(null, "Menu de jugadores: ", null, seleccionado, opcionJugadores, null, opcionesDeJugadores, opcionesDeJugadores[0]);
+					opcionJugadores = JOptionPane.showOptionDialog(null, "Menu de jugadores: ", null, 0, 0, null, opcionesDeJugadores, opcionesDeJugadores[0]);
 					switch (opcionJugadores) {
 					case 0:		
 						//Agregar jugador 
@@ -49,36 +62,29 @@ public class Main {
 						int camiseta = Integer.parseInt(JOptionPane.showInputDialog("Ingrese numero camiseta"));
 						String[] posiciones = {"Arquero","Delantero","Mediocampista","Defensor"};
 						String posicion = (String) JOptionPane.showInputDialog(null, "Posición", null, 0, null, posiciones, posiciones[0]);
-						if(nuevo.getEquipos().get(seleccionado).agregarJugador( nombre, edad, camiseta, posicion)) {
-							JOptionPane.showMessageDialog(null, "Se pudo agregar!");
-						}else {
-							JOptionPane.showMessageDialog(null, "No se pudo agregar");
-
-						}
-
+						seleccionado.agregarJugador( nombre, edad, camiseta, posicion); 
 						break;
 					case 1: 			
 						//Rellenar jugadores
 						int cantidad = Integer.parseInt(JOptionPane.showInputDialog("Ingrese cantidad"));
-						nuevo.getEquipos().get(seleccionado).agregarJugadoresFalso(cantidad);
+						seleccionado.agregarJugadoresFalso(cantidad);
 						break;
 					case 2:
 						//Ver la lista de jugadores
-						if (nuevo.getEquipos().get(seleccionado).getJugadores().size()==0) {
+						if (seleccionado.getJugadores().size()==0) {
 							JOptionPane.showMessageDialog(null, "No hay jugadores");
 						} else {
-							JOptionPane.showMessageDialog(null,"Cantidad de jugadores: " + nuevo.getEquipos().get(0).getJugadores().size() + "   " + nuevo.getEquipos().get(seleccionado).getJugadores());
+							JOptionPane.showMessageDialog(null,"Cantidad de jugadores: " + seleccionado.getJugadores().size() + "   " + seleccionado.getJugadores());
 						}
-
 						break;
 					case 3:
 						//Buscar jugador
-						if (nuevo.getEquipos().get(seleccionado).getJugadores().size()==0) {
+						if (seleccionado.getJugadores().size()==0) {
 							JOptionPane.showMessageDialog(null, "No hay jugadores");
 						} else {	
-							String[] jugadores= new String[nuevo.getEquipos().get(seleccionado).getJugadores().size()]; 
-							for (int i = 0; i < nuevo.getEquipos().get(seleccionado).getJugadores().size(); i++) {
-								jugadores[i] =  Integer.toString(nuevo.getEquipos().get(seleccionado).getJugadores().get(i).getnCamiseta());
+							String[] jugadores= new String[seleccionado.getJugadores().size()]; 
+							for (int i = 0; i < seleccionado.getJugadores().size(); i++) {
+								jugadores[i] =  Integer.toString(seleccionado.getJugadores().get(i).getnCamiseta());
 							}
 							String seleccion = (String)JOptionPane.showInputDialog(null, "Jugadores",
 									null, 0, null, jugadores, jugadores[0]);
@@ -87,11 +93,11 @@ public class Main {
 							};	
 							int opcionJugador=0;
 							do {
-								opcionJugador = JOptionPane.showOptionDialog(null,  "Que deseas hacer con el jugador: "  , null, seleccionado, opcionJugador, null, opcionDeJugador, opcionDeJugador[0]);
+								opcionJugador = JOptionPane.showOptionDialog(null,  "Que deseas hacer con el jugador: "  , null, 0, 0, null, opcionDeJugador, opcionDeJugador[0]);
 								switch (opcionJugador) {
 								case 0:
 									//Eliminar jugador
-									if(nuevo.getEquipos().get(seleccionado).eliminarJugador(Integer.parseInt(seleccion))) {
+									if(seleccionado.eliminarJugador(Integer.parseInt(seleccion))) {
 										JOptionPane.showMessageDialog(null, "Se pudo eliminar");
 
 									}else {
@@ -129,12 +135,7 @@ public class Main {
 				//Agregar equipo
 				String nombre = JOptionPane.showInputDialog("Ingrese nombre del equipo");
 				String ciudad =	JOptionPane.showInputDialog("Ingrese su ciudad");
-				if (nuevo.agregarEquipo(nombre, ciudad)) {
-					JOptionPane.showMessageDialog(null, "Se pudo agregar!");
-				} else {
-					JOptionPane.showMessageDialog(null, "No se pudo agregar!");
-				}
-
+				nuevo.agregarEquipo(nombre, ciudad);
 				break;
 			case 4: 
 
@@ -190,15 +191,16 @@ public class Main {
 
 	}
 
-	public static int seleccionarEquipo(LinkedList<Equipo> equipos) {
+	public static Equipo seleccionarEquipo(LinkedList<Equipo> equipos) {
 		String[] equiposarray = new String[equipos.size()];
 		for (int i = 0; i < equipos.size(); i++) {
 			equiposarray[i] = equipos.get(i).getNombre();
 		}
 		int opcion = JOptionPane.showOptionDialog(null, 
 				"Seleccione equipo", null, 0, 0, null, equiposarray, equiposarray[0]);
-
-		return opcion;
+		Equipo selecionado = equipos.get(opcion);
+		equipos.remove(opcion);
+		return selecionado;
 
 
 	}

@@ -17,30 +17,24 @@ public class Jugador {
 	public String getNombre() {
 		return nombre;
 	}
-
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
 	public int getEdad() {
 		return edad;
 	}
-
 	public void setEdad(int edad) {
 		this.edad = edad;
 	}
 	public int getnCamiseta() {
 		return nCamiseta;
 	}
-
 	public void setnCamiseta(int nCamiseta) {
 		this.nCamiseta = nCamiseta;
 	}
-
 	public String getPosicion() {
 		return posicion;
 	}
-
 	public void setPosicion(String posicion) {
 		this.posicion = posicion;
 	}
