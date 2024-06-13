@@ -1,3 +1,4 @@
+import java.awt.Component;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -28,18 +29,45 @@ public class Main {
 
 			switch (opcion) {
 			case 0:
-				
+
 				String[] OpcionesPartidos = {
 
-						"Partido","Revisar Equipo","Ver la lista de equipos",
-						"Agregar equipo","Buscar equipo","Salir"
-
+						"Jugar partido","Elegir Equipo","Generar equipos",
+						"Ver informacion","","Salir"
 				};
 				int opcionpartido =0;
-				//Partido
-				JOptionPane.showMessageDialog(null, "El ganador es:"+
-						nuevo.JugarPartido(seleccionarEquipo(nuevo.getEquipos())
-								,seleccionarEquipo(nuevo.getEquipos())));
+				do {
+					opcionpartido = JOptionPane.showOptionDialog(null, "Menu partido", null, 0, 0, null, OpcionesPartidos, OpcionesPartidos[0]);
+					switch (opcionpartido) {
+					case 0:
+
+						//Jugar partido
+
+						if (nuevo. .getEquipos(seleccionarEquipo(nuevo.getEquipos()).size()==0 ) { //seleccionado.getJugadores().size()==0
+							JOptionPane.showMessageDialog(null, "No se seleccionaron los equipos");
+						} else {
+							JOptionPane.showMessageDialog(null, "Se seleccionaron los equipos");
+						}
+					/*	JOptionPane.showMessageDialog(null, "El ganador es:"+
+								nuevo.JugarPartido(null, null) ); */
+								
+						break;
+					case 1:
+						//Elegir equipo 
+						Equipo seleccionar = seleccionarEquipo(nuevo.getEquipos());
+						
+						/*JOptionPane.showMessageDialog(null, "El ganador es:"+
+								nuevo.JugarPartido(seleccionarEquipo(nuevo.getEquipos())
+										,seleccionarEquipo(nuevo.getEquipos())));*/
+								
+						break;		
+
+					default:
+						break;
+					}
+					
+				} while (opcionpartido!=5);
+				
 
 				break;
 			case 1: 
