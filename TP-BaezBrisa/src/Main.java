@@ -24,7 +24,7 @@ public class Main {
 		LinkedList<Equipo> equipoGanador = new  LinkedList<Equipo> ();
 		String[] Opciones = {
 
-				"Partido","Revisar Equipo","Ver la lista de equipos",
+				"Crear partido","Revisar Equipo","Ver la lista de equipos",
 				"Agregar equipo","Buscar equipo","Salir"
 
 		};
@@ -37,8 +37,7 @@ public class Main {
 
 				String[] OpcionesPartidos = {
 
-						"Jugar partido","Ver partido","Crear partido",
-						"Ver informacion","","Salir"
+						"Jugar partido","Ver partido","Salir"
 				};
 				int opcionpartido =0;
 				do {
@@ -74,7 +73,7 @@ public class Main {
 
 						break;
 					case 1:
-						//Ver  lista 
+						//Ver  partido 
 						if (nuevo.getPartidos().isEmpty()) {
 							JOptionPane.showMessageDialog(null, "Todavia no se inicio el partido");
 						} else {
@@ -125,7 +124,7 @@ public class Main {
 					break;
 				}
 
-			} while (opcionpartido!=5);
+			} while (opcionpartido!=2);
 
 
 			break;
