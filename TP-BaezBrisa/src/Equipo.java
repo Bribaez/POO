@@ -5,10 +5,12 @@ import javax.swing.JOptionPane;
 public class Equipo {
 	private String nombre;
 	private String ciudad;
+	private String foto;
 	private LinkedList<Jugador> jugadores = new LinkedList<Jugador>();
-	public Equipo(String nombre, String ciudad) {
+	public Equipo(String nombre, String ciudad,  String foto) {
 		this.nombre = nombre;
 		this.ciudad = ciudad;
+	    this.foto = foto;
 	}
 
 	public String getNombre() {
@@ -23,16 +25,26 @@ public class Equipo {
 	public void setCiudad(String ciudad) {
 		this.ciudad = ciudad;
 	}
+	
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
 	public LinkedList<Jugador> getJugadores() {
 		return jugadores;
 	}
 	public void setJugadores(LinkedList<Jugador> jugadores) {
 		this.jugadores = jugadores;
 	}
+	
+
 
 	@Override
 	public String toString() {
-		return "\nEquipo [nombre=" + nombre + ", ciudad=" + ciudad + ", jugadores=" + jugadores +"]";
+		return "Equipo [nombre=" + nombre + ", ciudad=" + ciudad + ", foto=" + foto + ", jugadores=" + jugadores + "]";
 	} 
 
 	public void agregarJugadoresFalso(int cant) {

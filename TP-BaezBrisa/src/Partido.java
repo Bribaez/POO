@@ -69,6 +69,7 @@ public class Partido {
 				+ ", Fase=" + Fase + ", fecha=" + fecha + "]";
 	}
 
+	
 	public String DeterminarFase() {
 		if (cantPartidos<=4) {
 			return "Cuartos";
