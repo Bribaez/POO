@@ -92,46 +92,75 @@ public class GestorEquipos {
 	}
 	 */
 	public Partido JugarPartido(Equipo equipo1, Equipo equipo2) {
-		if (equipo1==equipo2) {
-			JOptionPane.showMessageDialog(null, "No se puede jugar entre el mismo equipo");
-			return null;
-		} else {
-			if (equipo1.getJugadores().size()<7 || equipo2.getJugadores().size()<7) {
-				JOptionPane.showMessageDialog(null, "No se puede jugar, faltan jugadores");
-				return null;
-			} else {
+	    if (equipo1 == equipo2) {
+	        JOptionPane.showMessageDialog(null, "No se puede jugar entre el mismo equipo");
+	        return null;
+	    } else {
+	        if (equipo1.getJugadores().size() < 7 || equipo2.getJugadores().size() < 7) {
+	            JOptionPane.showMessageDialog(null, "No se puede jugar, faltan jugadores");
+	            return null;
+	        } else {
+	            JOptionPane.showMessageDialog(null, "Se enfrentan: " + equipo1.getNombre() + " vs " + equipo2.getNombre());
 
-				JOptionPane.showMessageDialog(null, "Se enfrentan: " + equipo1.getNombre() + " vs " + equipo2.getNombre());
-				  int cont = 0;
-				  int goles1;
-				  int goles2;
-				  
-				int goles1PrimerTiempo = goles1 = (int) (Math.random() * 3);
-				int goles2PrimerTiempo = goles2 = (int) (Math.random() * 3);
-				JOptionPane.showMessageDialog(null, "Resultado del primer tiempo: " + equipo1.getNombre() + " " + goles1PrimerTiempo +
-						" - " + goles2PrimerTiempo + " " + equipo2.getNombre());
-			
-				int goles1SegundoTiempo = goles1 = (int) (Math.random() * 3);
-				int goles2SegundoTiempo = goles2 = (int) (Math.random() * 3);
-			
-				JOptionPane.showMessageDialog(null, "Resultado del segundo tiempo: " + equipo1.getNombre() + " " + goles1PrimerTiempo +
-						" - " + goles2PrimerTiempo + " " + equipo2.getNombre());
+	            // Primer tiempo
+	            int goles1PrimerTiempo = (int) (Math.random() * 3);
+	            int goles2PrimerTiempo = (int) (Math.random() * 3);
+	            JOptionPane.showMessageDialog(null, "Resultado del primer tiempo: " + equipo1.getNombre() + " " + goles1PrimerTiempo +
+	                    " - " + goles2PrimerTiempo + " " + equipo2.getNombre());
 
-				while (goles1 == goles2) {
-					cont++;
-				JOptionPane.showMessageDialog(null, "Empataron el equipo " + equipo1.getNombre() + "-" + equipo2.getNombre() );
-					goles1 = (int) (Math.random() * 5);
-					goles2 = (int) (Math.random() * 5); 
-					
-				}
-				
+	            // Segundo tiempo
+	            int goles1SegundoTiempo = (int) (Math.random() * 3);
+	            int goles2SegundoTiempo = (int) (Math.random() * 3);
+	            JOptionPane.showMessageDialog(null, "Resultado del segundo tiempo: " + equipo1.getNombre() + " " + goles1SegundoTiempo +
+	                    " - " + goles2SegundoTiempo + " " + equipo2.getNombre());
 
-				return new Partido(equipo1, equipo2, goles1, goles2);
+	            // Sumar los goles para obtener el resultado final
+	            int goles1 = goles1PrimerTiempo + goles1SegundoTiempo;
+	            int goles2 = goles2PrimerTiempo + goles2SegundoTiempo;
 
 
-			}
-		}
+	            while (goles1 == goles2) {
+	                JOptionPane.showMessageDialog(null, "Empataron el equipo " + equipo1.getNombre() + " - " + equipo2.getNombre());
+	                goles1 = (int) (Math.random() * 5);
+	                goles2 = (int) (Math.random() * 5);
+	            }
 
+
+	            if (goles1 == goles2) {
+	                JOptionPane.showMessageDialog(null, "Empate en tiempo regular. Se jugarán penales.");
+	                int golesPenales1 = 0;
+	                int golesPenales2 = 0;
+
+	           
+	                while (golesPenales1 == golesPenales2) {
+	                    golesPenales1 = (int) (Math.random() * 5);
+	                    golesPenales2 = (int) (Math.random() * 5);
+	                }
+
+	       
+	                JOptionPane.showMessageDialog(null, "Resultado de los penales: " + equipo1.getNombre() + " " + golesPenales1 +
+	                        " - " + golesPenales2 + " " + equipo2.getNombre());
+
+	          
+	                if (golesPenales1 > golesPenales2) {
+	                    JOptionPane.showMessageDialog(null, equipo1.getNombre() + " gana en penales!");
+	                    goles1 = golesPenales1;
+	                    goles2 = golesPenales2;
+	                } else {
+	                    JOptionPane.showMessageDialog(null, equipo2.getNombre() + " gana en penales!");
+	                    goles1 = golesPenales1;
+	                    goles2 = golesPenales2;
+	                }
+	            }
+
+	         
+	            JOptionPane.showMessageDialog(null, "Resultado final: " + equipo1.getNombre() + " " + goles1 +
+	                    " - " + goles2 + " " + equipo2.getNombre());
+
+	        
+	            return new Partido(equipo1, equipo2, goles1, goles2);
+	        }
+	    }
 	}
 
 	public void RellenarTodosLosEquipos() {
